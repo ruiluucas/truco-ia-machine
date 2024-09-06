@@ -1,5 +1,6 @@
 import random
 import statistics
+import numpy as np
 
 class Truco:
     allCardsWithoutNaipe = ['4', '5', '6', '7', 'Q', 'J', 'K', 'A', '2', '3']
@@ -24,11 +25,11 @@ class Truco:
     phase = 0
 
     trucoProbability = 0
-    askTruco = random.randint(1, 10)
+    askTruco = random.randint(1, 100)
     trucoValue = 0
 
     def blackGate(self):
-        if self.vira and len(self.myCards) != 3:
+        if self.vira and (len(self.myCards) != 3 or self.myCardsWhichPlay):
             return True
         return False
     
@@ -70,31 +71,29 @@ class Truco:
                 self.myCardsIdAsc = self.setAscCards(self.myCardsId)
                 self.myCardsIdMean = statistics.mean(self.myCardsIdAsc)
 
-                if self.whoStart == 0:
-                    self.warning = f'Começou o jogo. '
-                    self.rollGame('')
+                self.trucoProbability = (1.944 * np.square(self.myCardsIdMean)) - (23.33 * self.myCardsIdMean) + 80 
 
-                print('myCards: ' + self.myCards)
-                print('myCardsId: ' + self.myCardsId)
-                print('myCards: ' + self.myCardsIdMean)
+                if self.whoStart == 0:
+                    self.rollGame('')
+                return
             
             self.warning = f'Mostre minhas cartas. Faltam {abs(len(self.myCards) - 3)} cartas'
             return
-
         return
     
     def rollGame(self, card):
-        if self.askTruco <= 8:
-            self.askTruco = random.randint(1, 10)
+        self.adversaryCards.append(card)
+        if self.askTruco <= self.trucoProbability:
+            self.askTruco = random.randint(1, 100)
         else:
             self.warning = 'TRUCO!!!'
             self.trucoValue += 3
 
-        if card != '':
-            self.adversaryCards.append(card)
+        if card == '':
+            self.playCard(random.randint(0, 2))
 
-            return
-        
+        self.playCard(random.randint(0, len(self.myCards) - 1))
+
         return
     
     def playCard(self, cardId):
@@ -119,20 +118,21 @@ class Truco:
         return myCardsAsc
     
     def setCardIds(self, myCards):
-        myCardsId = []
+        myCardsId = [0, 0, 0]
         
-        for id in range(0, 2):
+        for id in range(0, 3):
+            myCards[id]
             if self.allCardsWithoutNaipe.index(myCards[id][0]) >= 9:
-                cardNaipe = myCards[id][1]
-                cardNaipeId = self.allCardsWithoutNaipe.index(self.allCardsNaipe.index[cardNaipe])
+                cardNaipe = self.myCards[id][1]
+                naipeId = self.allCardsNaipe.index(cardNaipe)
 
-                if cardNaipeId == 0:
+                if naipeId == 0:
                     myCardsId[id] = 9
-                if cardNaipeId == 1:
+                if naipeId == 1:
                     myCardsId[id] = 10
-                if cardNaipeId == 2:
+                if naipeId == 2:
                     myCardsId[id] = 11
-                if cardNaipeId == 3:
+                if naipeId == 3:
                     myCardsId[id] = 12
             else:
                 myCardsId[id] = self.allCardsWithoutNaipe.index(myCards[id][0])

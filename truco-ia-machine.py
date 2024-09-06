@@ -26,7 +26,7 @@ while True:
             if not truco.initGame:
                 truco.rollInitGame(cardReader.currentCard())
             else:
-                truco.rollGame()
+                truco.rollGame(cardReader.currentCard())
 
         for box in boxes:
             frame = frameEditor.writeRectangle(frame, box)
