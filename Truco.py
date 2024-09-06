@@ -8,7 +8,7 @@ class Truco:
     
     myCards = []
     myCardsId = []
-    myCardsAscAsc = []
+    myCardsAsc = []
     myCardsIdMean = 0
     myCardsWithoutNaipes = []
     warning = 'Deixe-me ler o vira'
@@ -20,12 +20,13 @@ class Truco:
     strongerCard = ''
 
     myCardsWhichPlay = []
+    myCardsWhichPlayForeignId = []
     adversaryCards = []
+    adversaryCardsIdMean = []
     whoStart = random.randint(0, 1)
     phase = 0
 
     trucoProbability = 0
-    askTruco = random.randint(1, 100)
     trucoValue = 0
 
     def blackGate(self):
@@ -37,10 +38,13 @@ class Truco:
         if card in (self.vira + self.myCards + self.adversaryCards):
             return
         
+        if(card[0][0] == '9'):
+            card[0][0] = '6'
+        
         if not self.vira:
             self.vira.append(card)
             self.viraWithoutNaipe = self.vira[0][0]
-            self.viraIndex = self.allCardsWithoutNaipe.index(self.viraWithoutNaipe)
+            print(f"{card} não foi encontrado na lista.")
 
             if self.viraIndex == 9:
                 self.strongerCard = self.allCardsWithoutNaipe[0]
@@ -82,59 +86,67 @@ class Truco:
         return
     
     def rollGame(self, card):
-        self.adversaryCards.append(card)
-        if self.askTruco <= self.trucoProbability:
-            self.askTruco = random.randint(1, 100)
-        else:
+        if self.percentGate(self.trucoProbability):
             self.warning = 'TRUCO!!!'
             self.trucoValue += 3
 
         if card == '':
-            self.playCard(random.randint(0, 2))
+            self.playCard(random.randint(0, 1))
+        else:
+            self.adversaryCards.append(card)
+            adversaryCardsMean = statistics.mean(self.setCardIds(self.adversaryCards))
+            
 
         self.playCard(random.randint(0, len(self.myCards) - 1))
 
         return
     
     def playCard(self, cardId):
-        self.myCardsWhichPlay.append(self.myCards[cardId])
-        self.myCards.pop(cardId)
+        self.myCardsWhichPlay.append(self.myCardsAsc[cardId])
+        self.myCardsWhichPlayForeignId.append(self.myCards.index(self.myCardsAsc[cardId]))
+        self.myCardsAsc.pop(cardId)
 
-    def setAscCards(self, myCardsId):
-        myCardsAsc = []
-        for card in myCardsId:
-            if len(myCardsAsc) == 0:
-                myCardsAsc.append(card)
+    def percentGate(self, percentageInPercentageRepresentation):
+        if random.randint(0, 100) <= percentageInPercentageRepresentation:
+            return True
+        else:
+            return False
+
+    def setAscCards(self, cardsId):
+        cardsAsc = []
+        for card in cardsId:
+            if len(cardsAsc) == 0:
+                cardsAsc.append(card)
             else:
                 inserted = False
-                for i in range(len(myCardsAsc)):
-                    if card < myCardsAsc[i]:
-                        myCardsAsc.insert(i, card)
+                for i in range(len(cardsAsc)):
+                    if card < cardsAsc[i]:
+                        cardsAsc.insert(i, card)
                         inserted = True
                         break
                 if not inserted:
-                    myCardsAsc.append(card)
+                    cardsAsc.append(card)
                     break
-        return myCardsAsc
+        return cardsAsc
     
-    def setCardIds(self, myCards):
-        myCardsId = [0, 0, 0]
+    def setCardIds(self, cards):
+        cardsId = [0, 0, 0]
         
-        for id in range(0, 3):
-            myCards[id]
-            if self.allCardsWithoutNaipe.index(myCards[id][0]) >= 9:
+        for id in range(0, len(cards)):
+            cards[id]
+            if self.allCardsWithoutNaipe.index(cards[id][0]) >= 9:
                 cardNaipe = self.myCards[id][1]
                 naipeId = self.allCardsNaipe.index(cardNaipe)
 
                 if naipeId == 0:
-                    myCardsId[id] = 9
+                    cardsId[id] = 9
                 if naipeId == 1:
-                    myCardsId[id] = 10
+                    cardsId[id] = 10
                 if naipeId == 2:
-                    myCardsId[id] = 11
+                    cardsId[id] = 11
                 if naipeId == 3:
-                    myCardsId[id] = 12
+                    cardsId[id] = 12
             else:
-                myCardsId[id] = self.allCardsWithoutNaipe.index(myCards[id][0])
+                cardsId[id] = self.allCardsWithoutNaipe.index(cards[id][0])
 
-        return myCardsId
+        return cardsId
