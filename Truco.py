@@ -23,7 +23,7 @@ class Truco:
     myCardsWhichPlayForeignId = []
     adversaryCards = []
     adversaryCardsIdMean = []
-    whoStart = random.randint(0, 1)
+    whoStart = 0 #random.randint(0, 1)
     phase = 0
 
     trucoProbability = 0
@@ -38,13 +38,14 @@ class Truco:
         if card in (self.vira + self.myCards + self.adversaryCards):
             return
         
-        if(card[0][0] == '9'):
-            card[0][0] = '6'
+        listCard = list(card) 
+        if(listCard[0] == '9'):
+            listCard[0] = '6'
+            card = str(listCard[0] + listCard[1])
         
         if not self.vira:
             self.vira.append(card)
             self.viraWithoutNaipe = self.vira[0][0]
-            print(f"{card} não foi encontrado na lista.")
 
             if self.viraIndex == 9:
                 self.strongerCard = self.allCardsWithoutNaipe[0]
@@ -72,7 +73,17 @@ class Truco:
                     self.myCardsWithoutNaipes.append(card[0])
 
                 self.myCardsId = self.setCardIds(self.myCards)
-                self.myCardsIdAsc = self.setAscCards(self.myCardsId)
+                print("myCards")
+                print(self.myCards)
+
+                self.myCardsIdAsc = self.setCardIds(self.myCardsId)
+                print("myCardsIdAsc")
+                print(self.myCardsIdAsc)
+
+                self.myCardsAsc = self.cardIdToCard(self.myCardsIdAsc)
+                print("myCardsIdAsc")
+                print(self.myCardsAsc)
+
                 self.myCardsIdMean = statistics.mean(self.myCardsIdAsc)
 
                 self.trucoProbability = (1.944 * np.square(self.myCardsIdMean)) - (23.33 * self.myCardsIdMean) + 80 
@@ -91,18 +102,19 @@ class Truco:
             self.trucoValue += 3
 
         if card == '':
+            print('mycardo')
+            print(self.myCardsAsc)
             self.playCard(random.randint(0, 1))
         else:
             self.adversaryCards.append(card)
             adversaryCardsMean = statistics.mean(self.setCardIds(self.adversaryCards))
             
-
-        self.playCard(random.randint(0, len(self.myCards) - 1))
-
         return
     
     def playCard(self, cardId):
+        print(cardId)
         self.myCardsWhichPlay.append(self.myCardsAsc[cardId])
+        print(self.myCardsWhichPlay)
         self.myCardsWhichPlayForeignId.append(self.myCards.index(self.myCardsAsc[cardId]))
         self.myCardsAsc.pop(cardId)
 
@@ -113,21 +125,21 @@ class Truco:
             return False
 
     def setAscCards(self, cardsId):
-        cardsAsc = []
-        for card in cardsId:
-            if len(cardsAsc) == 0:
-                cardsAsc.append(card)
+        cardsIdAsc = []
+        for cardId in cardsId:
+            if len(cardsIdAsc) == 0:
+                cardsIdAsc.append(cardId)
             else:
                 inserted = False
-                for i in range(len(cardsAsc)):
-                    if card < cardsAsc[i]:
-                        cardsAsc.insert(i, card)
+                for i in range(len(cardsIdAsc)):
+                    if cardId < cardsIdAsc[i]:
+                        cardsIdAsc.insert(i, cardId)
                         inserted = True
                         break
                 if not inserted:
-                    cardsAsc.append(card)
+                    cardsIdAsc.append(cardId)
                     break
-        return cardsAsc
+        return cardsIdAsc
     
     def setCardIds(self, cards):
         cardsId = [0, 0, 0]
@@ -150,3 +162,12 @@ class Truco:
                 cardsId[id] = self.allCardsWithoutNaipe.index(cards[id][0])
 
         return cardsId
+    
+    def cardIdToCard(self, cardsId):
+        cards = []
+        
+        for card in cardsId:
+            self.allCardsWithoutNaipe.index(card)
+            cards.append(self.allCardsWithoutNaipe[self.allCardsWithoutNaipe.index(card)])
+            
+        return cards
