@@ -7,7 +7,10 @@ import cv2
 import numpy as np
 ```
 
-## Explicando os métodos da classe
+<hr />
+
+## changeSaturation
+
 ```python
 def changeSaturation(self, frame, factor):
         imagem_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -25,6 +28,8 @@ Saturation(saturação) e Brightness(brilho). Nesse método podemos alterar esse
 
 <hr />
 
+## setBlackGate
+
 ```python
 def setBlackGate(self, frame, condition):
         if condition:
@@ -35,6 +40,8 @@ Método que é chamado no arquivo principal do projeto, sendo responsável por l
 Se o parâmetro <code>condition</code> for verdadeiro, ele seta todos os pixels da imagem como 0, se referindo ao preto.
 
 <hr />
+
+## writeRectangle
 
 ```python
 def writeRectangle(self, frame, box):
@@ -48,6 +55,8 @@ Ele também mostra o nível de confiança do modelo sobre o que o mesmo está an
 
 <hr />
 
+## setWarning
+
 ```python
 def setWarning(self, frame, warning):
         frame = cv2.putText(frame, f'{warning}', (5, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 8)
@@ -57,6 +66,8 @@ def setWarning(self, frame, warning):
 Responsável por mostrar o <code>warning</code> na tela, que é uma string que fornece informações sobre o jogo. 
 
 <hr />
+
+## setActualGameLabel
 
 ```python
  def setActualGameLabel(self, frame, vira, myCardsWhichPlay, adversaryCards):
