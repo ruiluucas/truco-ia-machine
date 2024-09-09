@@ -16,7 +16,7 @@ Este projeto utiliza visão computacional para detectar cartas de truco em tempo
 2. Instale as dependências necessárias executando o comando:
 
 ```bash
-pip install opencv-python ultralytics logging statistics
+pip install opencv-python ultralytics logging statistics opencv-python
 ```
 
 <hr />
