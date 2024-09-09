@@ -16,8 +16,10 @@ Este projeto utiliza visão computacional para detectar cartas de truco em tempo
 2. Instale as dependências necessárias executando o comando:
 
 ```bash
-pip install opencv-python
+pip install opencv-python ultralytics logging statistics
 ```
+
+<hr />
 
 ## Inicialização
 
@@ -37,12 +39,12 @@ frameEditor = FrameEditor()
 cardReader = CardReader()
 truco = Truco()
 ```
-
 #### As classes principais do projeto são:
-
 - <strong>FrameEditor</strong>: Cuida das regras relacionadas à câmera. Controla a ativação e desativação, ajusta parâmetros como saturação, e desenha retângulos e textos na tela.
 - <strong>CardReader</strong>: Responsável pela detecção de cartas no frame da câmera, utilizando IA para identificar as cartas em jogo.
 - <strong>Truco</strong>: Gerencia a lógica do jogo, incluindo as cartas do robô e do adversário, a "vira", o nível de poder das cartas, e decide qual carta jogar.
+
+<hr />
 
 ### Captura de Vídeo
 
@@ -72,10 +74,10 @@ cv2.destroyAllWindows()
 
 Este trecho configura a câmera do computador para começar a capturar imagens. O OpenCV utiliza um loop infinito para capturar continuamente os frames, processando-os até que a execução seja interrompida.
 
-### Processamento do Frame
+<hr />
 
+## Processamento do Frame
 Dentro do loop principal, o frame capturado passa por ajustes, como a modificação da saturação e a verificação do estado do jogo:
-
 ```python
 # Ajusta a saturação do frame para melhorar a detecção da imagem
 frame = frameEditor.changeSaturation(frame, 1.8)
@@ -83,13 +85,15 @@ frame = frameEditor.changeSaturation(frame, 1.8)
 # Verifica se a câmera deve estar ativa ou não, conforme o estado do jogo
 frame = frameEditor.setBlackGate(frame, truco.blackGate())
 ```
-
+- <code>changeSaturation</code>: Recebe uma imagem convertida em matriz e um número flutuante, retornando a amesma alterada.
+- <code>setBlackGate</code>: Recebe uma imagem convertida em matriz e uma função que retorna um booleano. Caso a função retorne True, todos os pixels da imagem são convertidos em preto.
+  
 Nesta fase, a imagem capturada é ajustada para facilitar a leitura das cartas pela IA. A saturação é aumentada para melhorar o contraste e a detecção. Além disso, a classe Truco determina se a câmera deve estar ativa, garantindo que o adversário não consiga ver as cartas do robô enquanto elas estão sendo analisadas.
 
-### Detecção de Cartas e Atualização do Estado do Jogo
+<hr />
 
+## Detecção de Cartas e Atualização do Estado do Jogo
 O código a seguir trata da detecção das cartas nas imagens e a atualização do estado do jogo:
-
 ```python
 # Detecta as cartas no frame atual
 frameData = cardReader.detect(frame)
@@ -118,21 +122,24 @@ for result in frameData:
   cv2.imshow('Truco IA Machine', frame)
   cv2.waitKey(100)
 ```
+- <code>cardReader.detect(frame)</code>: A IA realiza a detecção das cartas presentes no frame capturado. Quando as cartas são identificadas, as informações sobre a detecção, como os nomes das cartas e os vértices das caixas de detecção, estarão armazenadas dentro das caixas de seleção, que estão dentro do resultado.
+- <code>cardReader.cardBuffer</code>: Variável presente dentro de cardReader. Ela armazena uma lista com todas as deteções de cartas em um curto período de tempo, que é o período de tempo em que a pessoa levanta a carta para a câmera realizar a leitura.
+- <code>truco.initGame</code>: Define se o jogo está ou não inicializado. Quando não está, significa que ele ainda está lendo cartas essenciais para que o jogo comece, tais como o vira e as cartas do robô.
+- <code>truco.rollInitGame()</code>: Processa a carta que chega para ele e verifica aonde ela deve ser armazenada. Recebe a última carta detectada.
+- <code>truco.rollGame()</code>: Realiza a passagem do jogo. Quando é chamado a função, ela faz o robô escolher uma carta dentre a sua mão e jogar.
 
-#### Nesta parte do código:
+Se as cartas saem de cena e o buffer está cheio, o programa processa as cartas detectadas, tomando a mediana das cartas no buffer para minimizar erros de leitura.
+Dependendo do estado do jogo (initGame), a carta é processada para iniciar o jogo (caso ainda não tenha começado) ou para continuar o jogo.
+Depois que as cartas são processadas, o frame e os estados de jogo são atualizados com as mensagens de alerta e rótulos de estado do jogo.
 
-- A IA realiza a detecção das cartas presentes no frame capturado.
-- Quando as cartas são identificadas, as informações sobre a detecção, como os nomes das cartas e os vértices das caixas de detecção, são armazenadas em um buffer.
-- Se as cartas saem de cena e o buffer está cheio, o programa processa as cartas detectadas, tomando a mediana das cartas no buffer para minimizar erros de leitura.
-- Dependendo do estado do jogo (initGame), a carta é processada para iniciar o jogo (caso ainda não tenha começado) ou para continuar o jogo.
-- Depois que as cartas são processadas, o frame é atualizado com as mensagens de alerta e rótulos de estado do jogo, e em seguida é exibido na janela Truco IA Machine.
+<hr />
 
-#### Fluxo do Jogo:
-
-- Inicialização do Jogo: Se o jogo ainda não começou, a primeira carta detectada pode ser a "vira" ou uma das cartas do robô. Isso é controlado pela função rollInitGame().
+## Fluxo do Jogo:
+- Inicialização do Jogo: Se o jogo ainda não começou, a primeira carta detectada se torna o "vira". Isso é controlado pela função rollInitGame().
 - Continuação do Jogo: Após a inicialização, as cartas detectadas são tratadas pela função rollGame(), que executa a lógica do jogo de truco conforme as cartas vão sendo jogadas.
 
-# Conclusão
+<hr />
 
+# Conclusão
 Este projeto utiliza uma combinação de visão computacional e inteligência artificial para automatizar a detecção de cartas de truco, além de gerenciar o jogo de forma autônoma.
 A arquitetura modular, com classes separadas para manipulação de imagens, detecção de cartas e lógica do jogo, torna o código mais organizado e fácil de expandir ou modificar.
