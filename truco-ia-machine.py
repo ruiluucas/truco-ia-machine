@@ -5,11 +5,13 @@ import cv2
 from FrameEditor import FrameEditor
 from CardReader import CardReader
 from Truco import Truco
+from TrucoArrayManager import TrucoArrayManager
 
 # Inicializa as classes necessárias
 frameEditor = FrameEditor()
 cardReader = CardReader()
 truco = Truco()
+trucoArrayManager = TrucoArrayManager()
     
 # Inicializa o vídeo
 cap = cv2.VideoCapture(0)
@@ -46,7 +48,7 @@ while True:
             cardReader.cardBuffer.append(result.names[int(box.cls)])
 
     frame = frameEditor.setWarning(frame, truco.warning)
-    frame = frameEditor.setActualGameLabel(frame, truco.vira, truco.myCardsWhichPlay, truco.adversaryCards)
+    frame = frameEditor.setActualGameLabel(frame, truco.trucoArrayManager.vira, truco.trucoArrayManager.myCardsWhichPlay, truco.trucoArrayManager.adversaryCards)
     cv2.imshow('Truco IA Machine', frame)
     cv2.waitKey(100)
 
