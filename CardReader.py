@@ -22,5 +22,12 @@ class CardReader:
     # Realiza o cálculo da mediana e zera o buffer, retornando a mediana do buffer recém zerado.
     def currentCard(self):
         modeCardBuffer = statistics.mode(self.cardBuffer)
+        
+        listCard = list(modeCardBuffer) 
+        if(listCard[0] == '9'):
+            listCard[0] = '6'
+            modeCardBuffer = str(listCard[0] + listCard[1])
+
         self.cardBuffer = []
+            
         return modeCardBuffer

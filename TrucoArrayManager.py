@@ -8,6 +8,7 @@ class TrucoArrayManager:
     vira = str()
     myCards = []
     myCardsWhichPlay = []
+    myLastCardWithLocalId = 0
     adversaryCards = []
 
     # Recebe uma carta carta de baralho e retorna o nível de poder dela referente ao truco
@@ -32,10 +33,6 @@ class TrucoArrayManager:
 
     # Seta a carta do vira
     def setVira(self, card):
-        # Caso já tenha um vira cadastrado, não precisa rodar o resto do código
-        if self.vira:
-            return
-        
         # Adiciona o vira na memória
         self.vira = card
         self.redefineAllCardsOrderWithVira(self.vira)
@@ -44,10 +41,16 @@ class TrucoArrayManager:
     def playCard(self, cardIdByPower):
         myCardsAsc = self.alignCardsByPower(self.myCards)
         cardToPlay = myCardsAsc[cardIdByPower]
-
+        self.myLastCardWithLocalId = self.myCards.index(myCardsAsc[cardIdByPower])
         self.myCardsWhichPlay.append(cardToPlay)
         self.myCards.pop(self.myCards.index(cardToPlay))
 
+    def whoWin(self, botCard, adversaryCard):
+        if self.cardsToForeignId(botCard) >= self.cardsToForeignId(adversaryCard):
+            return 0
+        else:
+            return 1
+    
     # Redefine a ordem das cartas de acordo com o vira, fazendo com que a carta seguinte ao vira se torne a mais forte do jogo
     def redefineAllCardsOrderWithVira(self, vira):
         viraForeignId = self.allCardsWithoutNaipe.index(vira[0])
