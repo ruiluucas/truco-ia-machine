@@ -1,15 +1,15 @@
 import numpy as np
-class TrucoArrayManager:
+class TrucoCardManager:
     # Se concentra todas as cartas disponíveis para o jogo, sendo o ID de cada uma delas sua localização no array.
     allCardsWithoutNaipe = ['4', '5', '6', '7', 'Q', 'J', 'K', 'A', '2', '3']
     # COncentra todos os naipes disponíveis
     allCardsNaipe = ['C', 'H', 'S', 'D']
 
     vira = str()
-    myCards = []
-    myCardsWhichPlay = []
-    myLastCardWithLocalId = 0
-    adversaryCards = []
+    botCards = []
+    playedBotCards = []
+    lastBotCardWithLocalId = 0
+    userCards = []
 
     # Recebe uma carta carta de baralho e retorna o nível de poder dela referente ao truco
     def cardsToForeignId(self, cards):
@@ -39,17 +39,30 @@ class TrucoArrayManager:
 
     # Recebe um número de 0 a 2, passando a carta do array de cartas na mão do robô para as cartas que ele jogou
     def playCard(self, cardIdByPower):
-        myCardsAsc = self.alignCardsByPower(self.myCards)
+        myCardsAsc = self.alignCardsByPower(self.botCards)
         cardToPlay = myCardsAsc[cardIdByPower]
-        self.myLastCardWithLocalId = self.myCards.index(myCardsAsc[cardIdByPower])
-        self.myCardsWhichPlay.append(cardToPlay)
-        self.myCards.pop(self.myCards.index(cardToPlay))
+        self.lastBotCardWithLocalId = self.botCards.index(myCardsAsc[cardIdByPower])
+        self.playedBotCards.append(cardToPlay)
+        self.botCards.pop(self.botCards.index(cardToPlay))
 
     def whoWin(self, botCard, adversaryCard):
-        if self.cardsToForeignId(botCard) >= self.cardsToForeignId(adversaryCard):
+        print(self.cardsToForeignId(botCard))
+        print(self.cardsToForeignId(adversaryCard))
+
+        if self.cardsToForeignId(botCard) > self.cardsToForeignId(adversaryCard):
+            # Robô ganhou
             return 0
-        else:
-            return 1
+        
+        if self.cardsToForeignId(botCard) == self.cardsToForeignId(adversaryCard):
+            return 2
+        
+        # Adversário ganhou
+        return 1
+        
+    def roundIsEnableToStart(self):
+        if len(self.botCards) == 3 or self.playedBotCards:
+            return True
+        return False
     
     # Redefine a ordem das cartas de acordo com o vira, fazendo com que a carta seguinte ao vira se torne a mais forte do jogo
     def redefineAllCardsOrderWithVira(self, vira):
@@ -66,8 +79,6 @@ class TrucoArrayManager:
         self.allCardsWithoutNaipe.append(strongerCard)
         self.allCardsWithoutNaipe.append(strongerCard)
         self.allCardsWithoutNaipe.append(strongerCard)
-
-truco = TrucoArrayManager()
 
     
 

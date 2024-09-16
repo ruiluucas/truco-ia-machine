@@ -7,7 +7,7 @@ class CardReader:
     model = YOLO('../yolov8s_playing_cards.pt')
 
     # Inicializa o buffer da carta
-    cardBuffer = []
+    cardBuffer = list()
 
     # No momento em que a classe é chamada, é chamadado da importação "logging",
     # uma função para desabilitar logs desnecessários enquanto a detecção está acontecendo
@@ -28,6 +28,6 @@ class CardReader:
             listCard[0] = '6'
             modeCardBuffer = str(listCard[0] + listCard[1])
 
-        self.cardBuffer = []
+        self.cardBuffer.clear()
             
         return modeCardBuffer
