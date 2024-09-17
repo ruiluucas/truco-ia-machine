@@ -1,4 +1,4 @@
-# Projeto: Truco IA Machine
+# Truco IA Machine
 Este projeto utiliza visão computacional para detectar cartas de truco em tempo real por meio de uma webcam. Ele é responsável por detectar as cartas e gerenciar o estado do jogo de truco automaticamente.
 
 ## Instalação e inicialização:
