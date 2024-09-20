@@ -14,6 +14,9 @@ cd truco-ia-machine
 python truco-ia-machine.py
 ```
 
+# Leitura da carta
+Uma das principais diferenças do robô é a capacidade dele jogar com um baralho físico, por meio de visão computacional. O sistema utiliza o YOLOv8 para realizar o processamento de predição das cartas na câmera. Como não é um processo 100% certeiro, habilitei um sistema para carregar um buffer de vários frames seguidos. Esse buffer não tem uma quantidade máxima de elementos, mas possui uma quantidade mínima, suficiente para que o sistema possa ter mais confiança quanto, sem querer, o usuário passe alguma carta sem querer na frente da câmera.
+
 # Processo inicial do jogo:
 - Para começar o jogo, rode o script <code>truco-ia-machine.py</code>. É necessário que você tenha uma câmera para que o jogo funcione. Rodando o script, será aberto uma janela na tela do computador.
 - Após a abertura, o usuário deve mostrar, na câmera do computador, a carta do baralho que receberá a função de "Vira". Essa carta serve para modificar a ordem de poder do baralho. de forma que, alinhando as cartas por poder, caso o vira seja i, a carta de maior poder será i+1, ou seja, a carta seguinte ao vira no nível de poder.
@@ -51,7 +54,6 @@ O truco é um processo que acontece dentro do esquema apresentado anteriormente.
 No truco, o naipe é valido para verificar o poder de uma certa carta. No caso do vira, os 4 naipes da carta subsequente dele serão as mais poderosas do jogo, seguindo a ordem de poder dos naipes. Para as outras cartas, irá ser apresentado o conceito de empache. O empache acontece quando, na primeira partida, as duas maiores cartas da rodada são a mesma carta com o naipe diferente. Após isso acontecer, os jogaodores devem mostrar suas maiores cartas. Antes da pessoa jogar sua carta, ela também pode pedir truco, aumentando a aposta antes de revelar sua carta. Vencerá aquele que jogar a maior carta, e, se essas cartas mais fortes entre 2 adversários forem a mesma, com o mesmo naipe, aí então se considerará o naipe delas.
 
 No caso de empache na segunda ou terceira rodada, ganhará o time ou jogador que tiver ganhado a primeira rodada.
-
 
 
 
