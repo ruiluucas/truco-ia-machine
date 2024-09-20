@@ -47,11 +47,11 @@ O truco é um processo que acontece dentro do esquema apresentado anteriormente.
 ### Fatos adicionais:
 - O período do truco deve acabar a partir do momento em que for jogada a última carta da rodada.
 
-
 # Empache
 No truco, o naipe é valido para verificar o poder de uma certa carta. No caso do vira, os 4 naipes da carta subsequente dele serão as mais poderosas do jogo, seguindo a ordem de poder dos naipes. Para as outras cartas, irá ser apresentado o conceito de empache. O empache acontece quando, na primeira partida, as duas maiores cartas da rodada são a mesma carta com o naipe diferente. Após isso acontecer, os jogaodores devem mostrar suas maiores cartas. Antes da pessoa jogar sua carta, ela também pode pedir truco, aumentando a aposta antes de revelar sua carta. Vencerá aquele que jogar a maior carta, e, se essas cartas mais fortes entre 2 adversários forem a mesma, com o mesmo naipe, aí então se considerará o naipe delas.
 
 No caso de empache na segunda ou terceira rodada, ganhará o time ou jogador que tiver ganhado a primeira rodada.
+
 
 
 
