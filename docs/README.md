@@ -3,6 +3,14 @@ Este projeto utiliza visão computacional para detectar cartas de truco em tempo
 
 # Sumário
 - [Instalação e inicialização](#Instalação-e-inicialização);
+- [Processo inicial do jogo](#Processo-inicial-do-jogo);
+- [Processamento de leitura da carta](#Processamento-de-leitura-da-carta);
+- [Processo durante o jogo](#Processo-durante-o-jogo);
+- [Pedir truco](#Pedir-truco);
+- [Empache](#Empache);
+- [Histórias de usuário](#Histórias-de-usuário)
+
+
 
 # Instalação e inicialização:
 
@@ -22,12 +30,12 @@ python truco-ia-machine.py
 - Após a abertura, o usuário deve mostrar, na câmera do computador, a carta do baralho que receberá a função de "Vira". Essa carta serve para modificar a ordem de poder do baralho. de forma que, alinhando as cartas por poder, caso o vira seja i, a carta de maior poder será i+1, ou seja, a carta seguinte ao vira no nível de poder.
 - A janela então ficará inteira preta, sendo somente possível ler os textos e as caixas sinalizando a leitura de uma carta. Enquanto a janela estiver preta, o usuário irá setar as cartas do robô, de modo que não consiga ver qual carta é pela câmera.
 
-# Leitura da carta
+# Processamento de leitura da carta
 Uma das principais diferenças do robô é a capacidade dele jogar com um baralho físico, por meio de visão computacional. O sistema utiliza o YOLOv8 para realizar o processamento de predição das cartas na câmera. Como não é um processo 100% certeiro, habilitei um sistema para carregar um buffer de vários frames seguidos. Esse buffer não tem uma quantidade máxima de elementos, mas possui uma quantidade mínima, suficiente para que o sistema possa ter mais confiança quando, sem querer, o usuário mostre alguma carta sem querer na frente da câmera.
 
 Após o jogador disponibilizar a quantidade mínima de frames ao robô, caso ele tire a carta da frente da câmera, o jogo irá seguir por dois caminhos padrões: <code>rollInitGame</code> e <code>rollGame</code>. A primeira função é responsável por setar toda a parte inicial do jogo, como adicionar o vira e as cartas do robô na memória.
 
-# Durante o jogo:
+# Processo durante o jogo:
 Na primeira etapa, o jogo poderá começar de 4 formas, sendo elas:
 - O usuário começa e joga uma carta;
 - O usuário começa e pede truco;
@@ -39,7 +47,7 @@ Na primeira etapa, o jogo poderá começar de 4 formas, sendo elas:
 Como o código segue um padrão de ações reativas, as ações do robô são realizadas a partir da ação do próprio usuário, ou seja, toda vez que o usuário mostrar uma carta ou pressionar uma das teclas de função do programa, o robô irá realizar alguma ação. Desse modo, podemos dizer que, quando o robô começa, significa que ele já fez uma ação a partir do momento que você mostrou a última carta da mão dele. Ele verificará, depois de adicionar a carta em sua mão, se ele já está com a mão completa. Caso sim, irá verificar randomicamente quem começa, e se caso ele começar, já jogará uma carta.
 Caso o robô começe, o usuário jogará a última carta, e vise-versa.
 
-# Truco:
+# Pedir truco:
 O truco é um processo que acontece dentro do esquema apresentado anteriormente. Tanto o robô quanto o usuário podem pedir truco a qualquer momento, desde que estejam na sua vez de jogar. Não é possível pedir truco após jogar uma carta. Caso o robô esteja começando, antes de jogar a carta, ele irá verificar, em uma certa probabilidade, se pedirá truco ou não. Caso peça, o mesmo irá travar a execução do passo de jogar a carta, passo esse que então será realizado caso o jogador aceite o truco.
 
 ### Caso o robô peça truco, ele interrompirá o processo de jogar a carta, e então terá 3 possibilidades:
