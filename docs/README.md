@@ -1,6 +1,9 @@
 # Truco IA Machine
 Este projeto utiliza visão computacional para detectar cartas de truco em tempo real por meio de uma webcam. Ele é responsável por detectar as cartas e gerenciar o estado do jogo de truco automaticamente.
 
+# Sumário
+- Instalação e inicialização;
+
 ## Instalação e inicialização:
 
 1. Clone o repositório do projeto.
@@ -56,3 +59,11 @@ O truco é um processo que acontece dentro do esquema apresentado anteriormente.
 No truco, o naipe é valido para verificar o poder de uma certa carta. No caso do vira, os 4 naipes da carta subsequente dele serão as mais poderosas do jogo, seguindo a ordem de poder dos naipes. Para as outras cartas, irá ser apresentado o conceito de empache. O empache acontece quando, na primeira partida, as duas maiores cartas da rodada são a mesma carta com o naipe diferente. Após isso acontecer, os jogaodores devem mostrar suas maiores cartas. Antes da pessoa jogar sua carta, ela também pode pedir truco, aumentando a aposta antes de revelar sua carta. Vencerá aquele que jogar a maior carta, e, se essas cartas mais fortes entre 2 adversários forem a mesma, com o mesmo naipe, aí então se considerará o naipe delas.
 
 No caso de empache na segunda ou terceira rodada, ganhará o time ou jogador que tiver ganhado a primeira rodada.
+
+# Histórias de usuário
+HU01 - Como jogador, quero mostrar para ao robô suas respectivas cartas, para que ele guarde em memória e saiba o que ele pode jogar na mesa;
+HU02 - Como jogador, quero mostrar a carta vira ao robô para que ele indentifique a carta mais forte do jogo naquela rodada com base nela;
+HU03 - Como jogador, quero que o robô saiba qual carta eu joguei naquele determinado momento, para que ele possa tomar a decição de qual carta ele deve jogar posteriormente;
+HU04 - Como jogador, quero ter a possibilidade de pedir truco, para que o valor da partida atual aumente;
+HU05 - Como jogador, quero poder escolher se aceito o truco vindo do robô, para que eu não saia prejudicado caso minha mão esteja ruim;
+HU06 - Como jogador, quero poder empachar a carta para que a próxima jogada seja mostrar a carta mais forte.
