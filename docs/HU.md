@@ -8,4 +8,5 @@ HU04 - Como jogador, quero ter a possibilidade de pedir truco, para que o valor 
 
 HU05 - Como jogador, quero poder escolher se aceito o truco vindo do robô, para que eu não saia prejudicado caso minha mão esteja ruim.
 
-HU01 - Como jogador, quero poder empachar a carta para que a próxima ação seja mostrar a carta mais forte.
+HU06 - Como jogador, quero poder empachar a carta para que a próxima jogada seja mostrar a carta mais forte.
+
