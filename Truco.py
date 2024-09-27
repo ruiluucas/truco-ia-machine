@@ -19,6 +19,7 @@ class Truco:
     userPointsInRound = 0
 
     whoStart = random.randint(0, 1)
+    whoWinFirstRound = 2
 
     trucoProbability = 0
     trucoValue = 1
@@ -222,26 +223,28 @@ class Truco:
 
         if whoWin == 2:
             self.trucoProbability = 0
-            if (self.botPoints + self.userPoints) == 0:
+            if self.whoWinFirstRound == 2:
                 self.warning = f'Empache na primeira. Mostre sua carta mais forte'
                 self.empache = True
                 return
-            if self.botPoints > 0:
+            if self.whoWinFirstRound == 0:
                 self.botPointInRound += 1
                 self.warning = f'Empachou e ganhei a primeira'
                 self.cardReaderBlock = True
                 return
-            if self.userPoints > 0:
+            if self.whoWinFirstRound == 1:
                 self.userPointsInRound += 1
                 self.warning = f'Empachou e voce ganhou a primeira'
                 self.cardReaderBlock = True
                 return
         if whoWin == 0:
             self.botPointInRound += 1
+            self.whoWinFirstRound = 0
             self.warning = f'Ganhei a rodada!'
             return
         if whoWin == 1:
             self.userPointsInRound += 1
+            self.whoWinFirstRound = 1
             self.warning = f'Voce ganhou a rodada!'
             return
 

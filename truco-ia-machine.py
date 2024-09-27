@@ -52,6 +52,7 @@ while True:
 
                     if truco.trucoCardManager.roundIsEnableToStart():
                         truco.rollGame(currentCard)
+                        
                     else:
                         truco.rollInitGame(currentCard) # Adiciona a carta do vira e do robô
             else:          
