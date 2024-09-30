@@ -10,6 +10,8 @@ Este projeto utiliza visão computacional para detectar cartas de truco em tempo
 - [Empache](#Empache);
 - [Histórias de usuário](#Histórias-de-usuário)
 - [Casos de uso](#Casos-de-uso)
+  - [Mostrar vira](##Mostrar-vira)
+  - [Verificar cartas do robô](##Verificar-cartas-do-robô)
 
 # Instalação e inicialização:
 1. Clone o repositório do projeto.
@@ -83,10 +85,8 @@ Aqui se encontra o fluxograma de algumas funções de chamada do projeto. As fun
 
 Acesse o fluxograma por esse link [aqui!](https://www.figma.com/board/gaVoQwrtfulGMpGzptF5oi/truco-ia-machine%2Fuse-cases?node-id=0-1&t=nu9bwybsKcnxly5I-1)
 
+## Mostrar vira
 <table>
-  <tr>
-    <th colspan="2"><h2>Mostrar vira</h2></th>
-  </tr>
   <tr>
     <th>Ator principal</th>
     <td>Usuário</td>
@@ -144,10 +144,8 @@ Acesse o fluxograma por esse link [aqui!](https://www.figma.com/board/gaVoQwrtfu
   <tr>
 </table>
 
+## Verificar cartas do robô
 <table>
-  <tr>
-    <th colspan="2"><h2>Verificar cartas do robô</h2></th>
-  </tr>
   <tr>
     <th>Ator principal</th>
     <td>Usuário</td>
