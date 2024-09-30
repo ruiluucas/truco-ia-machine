@@ -9,11 +9,9 @@ Este projeto utiliza visão computacional para detectar cartas de truco em tempo
 - [Pedir truco](#Pedir-truco);
 - [Empache](#Empache);
 - [Histórias de usuário](#Histórias-de-usuário)
-
-
+- [Casos de uso](#Casos-de-uso)
 
 # Instalação e inicialização:
-
 1. Clone o repositório do projeto.
 2. Instale as dependências necessárias executando o comando:
 ```bash
@@ -69,9 +67,18 @@ No truco, o naipe é valido para verificar o poder de uma certa carta. No caso d
 No caso de empache na segunda ou terceira rodada, ganhará o time ou jogador que tiver ganhado a primeira rodada.
 
 # Histórias de usuário
-HU01 - Como jogador, quero mostrar para ao robô suas respectivas cartas, para que ele guarde em memória e saiba o que ele pode jogar na mesa;
-HU02 - Como jogador, quero mostrar a carta vira ao robô para que ele indentifique a carta mais forte do jogo naquela rodada com base nela;
-HU03 - Como jogador, quero que o robô saiba qual carta eu joguei naquele determinado momento, para que ele possa tomar a decição de qual carta ele deve jogar posteriormente;
-HU04 - Como jogador, quero ter a possibilidade de pedir truco, para que o valor da partida atual aumente;
-HU05 - Como jogador, quero poder escolher se aceito o truco vindo do robô, para que eu não saia prejudicado caso minha mão esteja ruim;
-HU06 - Como jogador, quero poder empachar a carta para que a próxima jogada seja mostrar a carta mais forte.
+Aqui se encontram alguns requisitos que já foram pensados para o programa, para facilitarmos a análise dos requisitos para a construção do programa.
+
+| Id | História de usuário |
+| --- | --- |
+| HU01 | Como jogador, quero mostrar para ao robô suas respectivas cartas, para que ele guarde em memória e saiba o que ele pode jogar na mesa |
+| HU02 |  Como jogador, quero mostrar a carta vira ao robô para que ele indentifique a carta mais forte do jogo naquela rodada com base nela |
+| HU03 |  Como jogador, quero que o robô saiba qual carta eu joguei naquele determinado momento, para que ele possa tomar a decição de qual carta ele deve jogar posteriormente |
+| HU04 |  Como jogador, quero ter a possibilidade de pedir truco, para que o valor da partida atual aumente |
+| HU05 |  Como jogador, quero poder escolher se aceito o truco vindo do robô, para que eu não saia prejudicado caso minha mão esteja ruim |
+| HU06 | Como jogador, quero poder empachar a carta para que a próxima jogada seja mostrar a carta mais forte |
+
+# Casos de uso
+Aqui se encontra o fluxograma de algumas funções de chamada do projeto. As funções contidas no fluxograma representam uma visão mais funcional acerca do código que ela explica. Quando uma função A estiver apontando com a flecha para uma função B, e essa mesma flecha ter o nome <code><<include>></code>, significa que a função A irá chamar obrigatóriamente a função B toda vez que for ativada. No entanto, caso a função A esteja recebendo uma flecha da função B, e essa flecha ter o nome  <code><<extend>></code>, significa que a função A não irá chamar a função B sempre, dependendo de algumas circunstâncias de lógica para que isso aconteça.
+
+Acesse o fluxograma por esse link <a src="https://www.figma.com/board/gaVoQwrtfulGMpGzptF5oi/truco-ia-machine%2Fuse-cases?node-id=0-1&t=nu9bwybsKcnxly5I-1">aqui!</a>
