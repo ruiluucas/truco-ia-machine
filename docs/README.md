@@ -226,10 +226,10 @@ Acesse o fluxograma por esse link [aqui!](https://www.figma.com/board/gaVoQwrtfu
     <td colspan="2">Jogador lança uma carta repetida</td>
   </tr>
    <tr>
-    <td colspan="2">Usuário começa, fazendo com que o robô não jogue nada no começo./td>
+    <td colspan="2">Usuário começa, fazendo com que o robô não jogue nada no começo.</td>
   </tr>
   <tr>
-    <td colspan="2">Robô começa e pede truco logo antes de jogar qualquer carta./td>
+    <td colspan="2">Robô começa e pede truco logo antes de jogar qualquer carta.</td>
   </tr>
   <tr>
 </table>
