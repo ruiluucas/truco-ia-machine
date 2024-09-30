@@ -2,12 +2,12 @@
 Este projeto utiliza visão computacional para detectar cartas de truco em tempo real por meio de uma webcam. Ele é responsável por detectar as cartas e gerenciar o estado do jogo de truco automaticamente.
 
 # Sumário
-- [Instalação e inicialização](#Instalação-e-inicialização);
-- [Processo inicial do jogo](#Processo-inicial-do-jogo);
-- [Processamento de leitura da carta](#Processamento-de-leitura-da-carta);
-- [Processo durante o jogo](#Processo-durante-o-jogo);
-- [Pedir truco](#Pedir-truco);
-- [Empache](#Empache);
+- [Instalação e inicialização](#Instalação-e-inicialização)
+- [Processo inicial do jogo](#Processo-inicial-do-jogo)
+- [Processamento de leitura da carta](#Processamento-de-leitura-da-carta)
+- [Processo durante o jogo](#Processo-durante-o-jogo)
+- [Pedir truco](#Pedir-truco)
+- [Empache](#Empache)
 - [Histórias de usuário](#Histórias-de-usuário)
 - [Casos de uso](#Casos-de-uso)
   - [Mostrar vira](#Mostrar-vira)
