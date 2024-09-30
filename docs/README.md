@@ -10,8 +10,8 @@ Este projeto utiliza visão computacional para detectar cartas de truco em tempo
 - [Empache](#Empache);
 - [Histórias de usuário](#Histórias-de-usuário)
 - [Casos de uso](#Casos-de-uso)
-  - [Mostrar vira](##Mostrar-vira)
-  - [Verificar cartas do robô](##Verificar-cartas-do-robô)
+  - [Mostrar vira](#Mostrar-vira)
+  - [Verificar cartas do robô](#Verificar-cartas-do-robô)
 
 # Instalação e inicialização:
 1. Clone o repositório do projeto.
