@@ -85,7 +85,7 @@ Acesse o fluxograma por esse link [aqui!](https://www.figma.com/board/gaVoQwrtfu
 
 <table>
   <tr>
-    <th colspan="2"><h1>Mostrar vira</h1></th>
+    <th colspan="2"><h2>Mostrar vira</h2></th>
   </tr>
   <tr>
     <th>Ator principal</th>
@@ -140,6 +140,96 @@ Acesse o fluxograma por esse link [aqui!](https://www.figma.com/board/gaVoQwrtfu
   </tr>
   <tr>
     <td colspan="2">Usuário lança uma carta que não está entre as cartas utilizadas no truco</td>
+  </tr>
+  <tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2"><h2>Verificar cartas do robô</h2></th>
+  </tr>
+  <tr>
+    <th>Ator principal</th>
+    <td>Usuário</td>
+  </tr>
+  <tr>
+    <th>Ator secundário</th>
+    <td>Sistema</td>
+  </tr>
+  <tr>
+    <th>Resumo</th>
+    <td>Adiciona as 3 cartas referentes ao robô na partida</td>
+  </tr>
+  <tr>
+    <th>Pré condição</th>
+    <td>Usuário ter mostrado a carta ao robô no momento em que o mesmo está apto a ler as 3 cartas; Já ter lido o vira;</td>
+  </tr>
+  <tr>
+    <th>Pós condição</th>
+    <td>Vira adicionado, ordem de poder das cartas alterada de acordo com o vira, tela fica preta e as próximas 3 cartas a serem jogadas serão transferidas para a mão do robô</td>
+  </tr>
+  <tr>
+    <th colspan="2">Fluxo normal</th>
+  </tr>
+  <tr>
+    <th>Ator principal</th>
+    <th>Sistema</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô fica em modo reativo para ler as 3 cartas</td>
+  </tr>
+  <tr>
+    <td>Usuário mostra a carta ao robô</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô adiciona a carta a mão</td>
+  </tr>
+  <tr>
+    <td>Usuário mostra a carta ao robô</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô adiciona a carta a mão</td>
+  </tr>
+  <tr>
+    <td>Usuário mostra a carta ao robô</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô adiciona a carta a mão</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robõ verifica que foram adicionadas as 3 cartas</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robõ verifica quem começa entre ele e o jogador.</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Quando o robô começa, o mesmo seta a probabilidade de chamar truco com base em suas cartas. Caso decida não trucar, termina</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Sistema reabilita a tela do jogo.</td>
+  </tr>
+  <tr>
+    <th colspan="2">Fluxo alternativo</th>
+  </tr>
+  <tr>
+    <td colspan="2">Jogador lança uma carta repetida</td>
+  </tr>
+   <tr>
+    <td colspan="2">Usuário começa, fazendo com que o robô não jogue nada no começo./td>
+  </tr>
+  <tr>
+    <td colspan="2">Robô começa e pede truco logo antes de jogar qualquer carta./td>
   </tr>
   <tr>
 </table>
