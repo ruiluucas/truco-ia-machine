@@ -81,4 +81,4 @@ Aqui se encontram alguns requisitos que já foram pensados para o programa, para
 # Casos de uso
 Aqui se encontra o fluxograma de algumas funções de chamada do projeto. As funções contidas no fluxograma representam uma visão mais funcional acerca do código que ela explica. Quando uma função A estiver apontando com a flecha para uma função B, e essa mesma flecha ter o nome <code><<include>></code>, significa que a função A irá chamar obrigatóriamente a função B toda vez que for ativada. No entanto, caso a função A esteja recebendo uma flecha da função B, e essa flecha ter o nome  <code><<extend>></code>, significa que a função A não irá chamar a função B sempre, dependendo de algumas circunstâncias de lógica para que isso aconteça.
 
-Acesse o fluxograma por esse link [aqui!](https://www.figma.com/board/gaVoQwrtfulGMpGzptF5oi/truco-ia-machine%2Fuse-cases?node-id=0-1&t=nu9bwybsKcnxly5I-1)
+Acesse o fluxograma por esse link [aqui!](https://www.figma.com/board/gaVoQwrtfulGMpGzptF5oi/truco-ia-machine%2Fuse-cases?node-id=0-1&t=nu9bwybsKcnxly5I-1){:target="_blank"}
