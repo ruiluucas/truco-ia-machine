@@ -10,10 +10,7 @@ Este projeto utiliza visão computacional para detectar cartas de truco em tempo
 - [Empache](#Empache);
 - [Histórias de usuário](#Histórias-de-usuário)
 
-
-
 # Instalação e inicialização:
-
 1. Clone o repositório do projeto.
 2. Instale as dependências necessárias executando o comando:
 ```bash
@@ -41,7 +38,6 @@ Na primeira etapa, o jogo poderá começar de 4 formas, sendo elas:
 - O usuário começa e pede truco;
 - O robô começa e joga uma carta;
 - O robô começa e pede truco;
-
 *A chance de você ou o robô começar é de 50% para ambos.*
 
 Como o código segue um padrão de ações reativas, as ações do robô são realizadas a partir da ação do próprio usuário, ou seja, toda vez que o usuário mostrar uma carta ou pressionar uma das teclas de função do programa, o robô irá realizar alguma ação. Desse modo, podemos dizer que, quando o robô começa, significa que ele já fez uma ação a partir do momento que você mostrou a última carta da mão dele. Ele verificará, depois de adicionar a carta em sua mão, se ele já está com a mão completa. Caso sim, irá verificar randomicamente quem começa, e se caso ele começar, já jogará uma carta.
@@ -75,3 +71,5 @@ HU03 - Como jogador, quero que o robô saiba qual carta eu joguei naquele determ
 HU04 - Como jogador, quero ter a possibilidade de pedir truco, para que o valor da partida atual aumente;
 HU05 - Como jogador, quero poder escolher se aceito o truco vindo do robô, para que eu não saia prejudicado caso minha mão esteja ruim;
 HU06 - Como jogador, quero poder empachar a carta para que a próxima jogada seja mostrar a carta mais forte.
+
+

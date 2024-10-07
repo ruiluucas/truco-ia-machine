@@ -143,14 +143,21 @@ class Truco:
         print(f"RollGame {card}")
         
         if self.whoStart == 0:
-            print("Robô começa")
             if card == '': # Verifica se o robô quem está começando o jogo, sendo representado pela chamada da função sem nenhum parâmetro
                 if not self.cardReaderBlock:
                     self.trucoCardManager.playCard(random.randint(0, len(self.trucoCardManager.botCards) - 1))
-                    self.command += f'Eu comeco. Jogo a carta numero {str(self.trucoCardManager.lastBotCardWithLocalId)}'
+                    self.command = f'Jogo a carta numero {str(self.trucoCardManager.lastBotCardWithLocalId)}'
             else:
                 self.trucoCardManager.userCards.append(card)
+                self.whoWinRound()
+                self.checkRoundWinner()
                 
+                if self.trucoValue == 1: # Verifica se já foi pedido truco
+                # Verifica se já foi pedido truco
+                    if self.percentGate(self.trucoProbability):
+                        self.trucoLabel = "Truco?"
+                        self.cardReaderBlock = True
+
                 if not self.cardReaderBlock:
                     if len(self.trucoCardManager.playedBotCards) != 3:
                         # Verifica se e a ultima carta do robo
@@ -160,16 +167,7 @@ class Truco:
                         else:
                             self.trucoCardManager.playCard(random.randint(0, len(self.trucoCardManager.botCards) - 1))
                             self.command = f'Jogo a carta numero {str(self.trucoCardManager.lastBotCardWithLocalId)}'
-                            
-                if self.trucoCardManager.userCards:
-                    self.whoWinRound()
-                    self.checkRoundWinner()
                 
-                if self.trucoValue == 1: # Verifica se já foi pedido truco
-                # Verifica se já foi pedido truco
-                    if self.percentGate(self.trucoProbability):
-                        self.trucoLabel = "Truco?"
-                        self.cardReaderBlock = True
         else:
             print("Adversário começa.")
             self.trucoCardManager.userCards.append(card)
@@ -207,13 +205,13 @@ class Truco:
             self.trucoProbability = 0
             self.botPoints += self.trucoValue
             print(self.botPoints)
-            self.warning += f'Jogue o vira para recomecar'
+            self.warning += f'Pressione Z para recomecar'
             self.cardReaderBlock = True
 
         if  self.userPointsInRound > 1:
             self.trucoProbability = 0
             self.userPoints += self.trucoValue
-            self.warning += f'Jogue o vira para recomecar'
+            self.warning += f'Pressione Z para recomecar'
             self.cardReaderBlock = True
     
     def whoWinRound(self):
