@@ -1,14 +1,21 @@
 # Truco IA Machine
 Este projeto utiliza visão computacional para detectar cartas de truco em tempo real por meio de uma webcam. Ele é responsável por detectar as cartas e gerenciar o estado do jogo de truco automaticamente.
+![](https://github.com/ruiluucas/truco-ia-machine/blob/main/docs/example.gif)
 
 # Sumário
-- [Instalação e inicialização](#Instalação-e-inicialização);
-- [Processo inicial do jogo](#Processo-inicial-do-jogo);
-- [Processamento de leitura da carta](#Processamento-de-leitura-da-carta);
-- [Processo durante o jogo](#Processo-durante-o-jogo);
-- [Pedir truco](#Pedir-truco);
-- [Empache](#Empache);
+- [Instalação e inicialização](#Instalação-e-inicialização)
+- [Processo inicial do jogo](#Processo-inicial-do-jogo)
+- [Processamento de leitura da carta](#Processamento-de-leitura-da-carta)
+- [Processo durante o jogo](#Processo-durante-o-jogo)
+- [Pedir truco](#Pedir-truco)
+- [Empache](#Empache)
 - [Histórias de usuário](#Histórias-de-usuário)
+<<<<<<< HEAD
+=======
+- [Casos de uso](#Casos-de-uso)
+  - [Mostrar vira](#Mostrar-vira)
+  - [Verificar cartas do robô](#Verificar-cartas-do-robô)
+>>>>>>> adbda0710db60172e9e5c65544685a3549a79e8e
 
 # Instalação e inicialização:
 1. Clone o repositório do projeto.
@@ -65,11 +72,178 @@ No truco, o naipe é valido para verificar o poder de uma certa carta. No caso d
 No caso de empache na segunda ou terceira rodada, ganhará o time ou jogador que tiver ganhado a primeira rodada.
 
 # Histórias de usuário
+<<<<<<< HEAD
 HU01 - Como jogador, quero mostrar para ao robô suas respectivas cartas, para que ele guarde em memória e saiba o que ele pode jogar na mesa;
 HU02 - Como jogador, quero mostrar a carta vira ao robô para que ele indentifique a carta mais forte do jogo naquela rodada com base nela;
 HU03 - Como jogador, quero que o robô saiba qual carta eu joguei naquele determinado momento, para que ele possa tomar a decição de qual carta ele deve jogar posteriormente;
 HU04 - Como jogador, quero ter a possibilidade de pedir truco, para que o valor da partida atual aumente;
 HU05 - Como jogador, quero poder escolher se aceito o truco vindo do robô, para que eu não saia prejudicado caso minha mão esteja ruim;
 HU06 - Como jogador, quero poder empachar a carta para que a próxima jogada seja mostrar a carta mais forte.
+=======
+Aqui se encontram alguns requisitos que já foram pensados para o programa, para facilitarmos a análise dos requisitos para a construção do programa.
+
+| Id | História de usuário |
+| --- | --- |
+| HU01 | Como jogador, quero mostrar para ao robô suas respectivas cartas, para que ele guarde em memória e saiba o que ele pode jogar na mesa |
+| HU02 |  Como jogador, quero mostrar a carta vira ao robô para que ele indentifique a carta mais forte do jogo naquela rodada com base nela |
+| HU03 |  Como jogador, quero que o robô saiba qual carta eu joguei naquele determinado momento, para que ele possa tomar a decição de qual carta ele deve jogar posteriormente |
+| HU04 |  Como jogador, quero ter a possibilidade de pedir truco, para que o valor da partida atual aumente |
+| HU05 |  Como jogador, quero poder escolher se aceito o truco vindo do robô, para que eu não saia prejudicado caso minha mão esteja ruim |
+| HU06 | Como jogador, quero poder empachar a carta para que a próxima jogada seja mostrar a carta mais forte |
+
+# Casos de uso
+Aqui se encontra o fluxograma de algumas funções de chamada do projeto. As funções contidas no fluxograma representam uma visão mais funcional acerca do código que ela explica. Quando uma função A estiver apontando com a flecha para uma função B, e essa mesma flecha ter o nome ``<<include>>``, significa que a função A irá chamar obrigatóriamente a função B toda vez que for ativada. No entanto, caso a função A esteja recebendo uma flecha da função B, e essa flecha ter o nome  ``<<extend>>``, significa que a função A não irá chamar a função B sempre, dependendo de algumas circunstâncias de lógica para que isso aconteça.
+
+Acesse o fluxograma por esse link [aqui!](https://www.figma.com/board/gaVoQwrtfulGMpGzptF5oi/truco-ia-machine%2Fuse-cases?node-id=0-1&t=nu9bwybsKcnxly5I-1)
+
+## Mostrar vira
+<table>
+  <tr>
+    <th>Ator principal</th>
+    <td>Usuário</td>
+  </tr>
+  <tr>
+    <th>Ator secundário</th>
+    <td>Sistema</td>
+  </tr>
+  <tr>
+    <th>Resumo</th>
+    <td>Descreve a adição do vira na partida</td>
+  </tr>
+  <tr>
+    <th>Pré condição</th>
+    <td>Usuário ter mostrado a carta ao robô no momento em que o mesmo está apto a ler a carta "vira"</td>
+  </tr>
+  <tr>
+    <th>Pós condição</th>
+    <td>Vira adicionado, ordem de poder das cartas alterada de acordo com o vira, tela fica preta e as próximas 3 cartas a serem jogadas serão transferidas para a mão do robô</td>
+  </tr>
+  <tr>
+    <th colspan="2">Fluxo normal</th>
+  </tr>
+  <tr>
+    <th>Ator principal</th>
+    <th>Sistema</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô fica em modo reativo para a próxima carta analisada se tornar o vira</td>
+  </tr>
+  <tr>
+    <td>Usuário mostra a carta ao robô</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô analisa o poder da carta</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô troca toda a ordem de poder das cartas para que o vira seja a mais forte</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô escurece a tela para que o jogador não possa ver as próximas cartas a serem analisadas pelo robô</td>
+  </tr>
+   </tr>
+  <tr>
+    <th colspan="2">Fluxo alternativo</th>
+  </tr>
+  <tr>
+    <td colspan="2">Usuário lança uma carta que não está entre as cartas utilizadas no truco</td>
+  </tr>
+  <tr>
+</table>
+
+## Verificar cartas do robô
+<table>
+  <tr>
+    <th>Ator principal</th>
+    <td>Usuário</td>
+  </tr>
+  <tr>
+    <th>Ator secundário</th>
+    <td>Sistema</td>
+  </tr>
+  <tr>
+    <th>Resumo</th>
+    <td>Adiciona as 3 cartas referentes ao robô na partida</td>
+  </tr>
+  <tr>
+    <th>Pré condição</th>
+    <td>Usuário ter mostrado a carta ao robô no momento em que o mesmo está apto a ler as 3 cartas; Já ter lido o vira;</td>
+  </tr>
+  <tr>
+    <th>Pós condição</th>
+    <td>Vira adicionado, ordem de poder das cartas alterada de acordo com o vira, tela fica preta e as próximas 3 cartas a serem jogadas serão transferidas para a mão do robô</td>
+  </tr>
+  <tr>
+    <th colspan="2">Fluxo normal</th>
+  </tr>
+  <tr>
+    <th>Ator principal</th>
+    <th>Sistema</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô fica em modo reativo para ler as 3 cartas</td>
+  </tr>
+  <tr>
+    <td>Usuário mostra a carta ao robô</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô adiciona a carta a mão</td>
+  </tr>
+  <tr>
+    <td>Usuário mostra a carta ao robô</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô adiciona a carta a mão</td>
+  </tr>
+  <tr>
+    <td>Usuário mostra a carta ao robô</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robô adiciona a carta a mão</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robõ verifica que foram adicionadas as 3 cartas</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Robõ verifica quem começa entre ele e o jogador.</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Quando o robô começa, o mesmo seta a probabilidade de chamar truco com base em suas cartas. Caso decida não trucar, termina</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Sistema reabilita a tela do jogo.</td>
+  </tr>
+  <tr>
+    <th colspan="2">Fluxo alternativo</th>
+  </tr>
+  <tr>
+    <td colspan="2">Jogador lança uma carta repetida</td>
+  </tr>
+   <tr>
+    <td colspan="2">Usuário começa, fazendo com que o robô não jogue nada no começo</td>
+  </tr>
+  <tr>
+    <td colspan="2">Robô começa e pede truco logo antes de jogar qualquer carta</td>
+  </tr>
+  <tr>
+</table>
+
+
+>>>>>>> adbda0710db60172e9e5c65544685a3549a79e8e
 
 
